@@ -3,7 +3,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import LoginPage from './pages/LoginPage'; // Importar la página de inicio de sesión
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProfilePage from './pages/ProfilePage';
 import './App.css';
 
 function App() {
@@ -13,8 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<div>Bienvenido a Librohub</div>} />
         <Route path="/login" element={<LoginPage />} />
-        {/* Rutas futuras para registro y recuperación */}
-        <Route path="/register" element={<div>Registro</div>} />
+          <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/register" element={<RegisterPage/>} />
         <Route path="/recover-password" element={<div>Recuperar Contraseña</div>} />
       </Routes>
     </Router>

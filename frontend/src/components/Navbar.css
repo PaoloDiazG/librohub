@@ -76,3 +76,24 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.account-section {
+  display: flex;
+  align-items: center;
+}
+
+.account-button, .logout-button {
+  padding: 8px 16px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.logout-button {
+  background-color: #ff3900; /* Naranja para diferenciar */
+}
+

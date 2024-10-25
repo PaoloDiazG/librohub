@@ -1,0 +1,65 @@
+/* frontend/src/pages/ProfilePage.css */
+
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f6fa; /* Fondo blanco */
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  padding: 30px;
+  background-color: #ff3900; /* Fondo anaranjado */
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+}
+
+.profile-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff; /* Texto blanco */
+  margin-bottom: 20px;
+}
+
+.profile-summary p {
+  color: #ffffff; /* Texto blanco */
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.profile-field {
+  margin: 10px 0;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.edit-button, .save-button, .cancel-button, .back-button {
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #ff3900; /* Naranja */
+}
+
+.back-button {
+  margin-top: 20px;
+  background-color: #000000;
+}

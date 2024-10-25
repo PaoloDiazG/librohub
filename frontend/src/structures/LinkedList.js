@@ -1,4 +1,4 @@
-// Nodo de usuario
+
 class UserNode {
   constructor(id, email, password, lastName, firstName, gender, birthDate) {
     this.id = id; // DNI del usuario
@@ -12,7 +12,6 @@ class UserNode {
   }
 }
 
-// Lista enlazada de usuarios
 class UserLinkedList {
   constructor() {
     this.head = null; // Cabeza de la lista
@@ -35,44 +34,19 @@ class UserLinkedList {
     this.size++;
   }
 
-  // Buscar un usuario por ID (DNI)
-  findUserById(id) {
+  // Verificar credenciales de inicio de sesión
+  verifyLogin(email, password) {
     let current = this.head;
     while (current) {
-      if (current.id === id) return current;
-      current = current.next;
-    }
-    return null; // Retorna null si no se encuentra el usuario
-  }
-
-   // Eliminar un usuario por ID (DNI)
-  removeUserById(id) {
-    if (!this.head) return null;
-
-    // Si el usuario a eliminar es la cabeza
-    if (this.head.id === id) {
-      this.head = this.head.next;
-      this.size--;
-      return true;
-    }
-
-    let current = this.head;
-    let prev = null;
-
-    while (current) {
-      if (current.id === id) {
-        prev.next = current.next;
-        this.size--;
-        return true;
+      if (current.email === email && current.password === password) {
+        return current; // Retorna el usuario si las credenciales coinciden
       }
-      prev = current;
       current = current.next;
     }
-
-    return false; // Retorna false si no se encuentra el usuario
+    return null; // Retorna null si no se encuentran las credenciales
   }
 
-  // Obtener todos los usuarios
+  // Obtener todos los usuarios (para debugging)
   getAllUsers() {
     const users = [];
     let current = this.head;
