@@ -1,0 +1,78 @@
+/* frontend/src/components/Navbar.css */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ff3900; /* Fondo de la navbar */
+  padding: 10px 20px;
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif; /* Fuente más redonda */
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+}
+
+.navbar-title {
+  font-size: 24px;
+  color: #ffffff; /* Texto blanco para resaltar en el fondo naranja */
+  font-weight: bold;
+}
+
+.navbar-search {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  background-color: #ffffff; /* Fondo blanco */
+  color: #000000;
+}
+
+.search-button {
+  padding: 8px 12px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+}
+
+.login-button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-button {
+  padding: 8px 16px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

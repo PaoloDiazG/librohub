@@ -1,5 +1,5 @@
 import React, {createContext, useState} from "react";
-import UserLinkedList from "../Structures/LinkedList";
+import UserLinkedList from "../structures/LinkedList";
 
 //contexto
 export const UserContext = createContext();

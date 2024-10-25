@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+// frontend/src/App.js
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import LoginPage from './pages/LoginPage'; // Importar la página de inicio de sesión
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<div>Bienvenido a Librohub</div>} />
+        <Route path="/login" element={<LoginPage />} />
+        {/* Rutas futuras para registro y recuperación */}
+        <Route path="/register" element={<div>Registro</div>} />
+        <Route path="/recover-password" element={<div>Recuperar Contraseña</div>} />
+      </Routes>
+    </Router>
   );
 }
 
