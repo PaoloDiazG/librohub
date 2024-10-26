@@ -1,6 +1,5 @@
 // frontend/src/pages/ProfilePage.js
-
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import './ProfilePage.css';
@@ -11,6 +10,17 @@ const ProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [form, setForm] = useState({ ...currentUser });
 
+
+  //Converitr la fecha
+  const formatDate = (isoDate) => {
+    if(!isoDate) return '';
+    return new Date(isoDate).toISOString().split('T')[0];
+  }
+   // Cargar los datos del usuario al montar el componente
+  useEffect(() => {
+    setForm({ ...currentUser });
+  }, [currentUser]);
+
   // Manejar los cambios en el formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +30,16 @@ const ProfilePage = () => {
     });
   };
 
-  // Guardar los cambios y actualizar la lista enlazada
-  const handleSave = () => {
-    updateUser(form); // Actualizar los datos del usuario en el contexto
-    setIsEditing(false); // Salir del modo de edición
+  // Guardar los cambios y actualizar los datos en la base de datos
+  const handleSave = async () => {
+    try {
+      await updateUser(form); // Actualiza los datos en el backend y el contexto
+      setIsEditing(false); // Salir del modo de edición
+      alert('Datos actualizados correctamente!');
+    } catch (error) {
+      console.error('Error al actualizar los datos:', error);
+      alert('Error al actualizar los datos');
+    }
   };
 
   // Salir del modo de edición sin guardar cambios
@@ -79,12 +95,12 @@ const ProfilePage = () => {
           </form>
         ) : (
           <div className="profile-summary">
-            <p><strong>DNI:</strong> {currentUser.id}</p>
+            <p><strong>DNI:</strong> {currentUser.dni}</p>
             <p><strong>Correo:</strong> {currentUser.email}</p>
-            <p><strong>Apellidos:</strong> {currentUser.lastName}</p>
-            <p><strong>Nombres:</strong> {currentUser.firstName}</p>
+            <p><strong>Apellidos:</strong> {currentUser.last_name}</p>
+            <p><strong>Nombres:</strong> {currentUser.first_name}</p>
             <p><strong>Sexo:</strong> {currentUser.gender}</p>
-            <p><strong>Fecha de Nacimiento:</strong> {currentUser.birthDate}</p>
+            <p><strong>Fecha de Nacimiento:</strong> {formatDate(currentUser.birth_date)}</p>
             <button className="edit-button" onClick={() => setIsEditing(true)}>
               Editar Datos
             </button>

@@ -1,12 +1,10 @@
 // frontend/src/pages/RegisterPage.js
 
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
 import './RegisterPage.css';
 
 const RegisterPage = () => {
-  const { registerUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     dni: '',
@@ -26,19 +24,30 @@ const RegisterPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(form.email)) {
-      alert('Por favor, ingresa un correo válido.');
-      return;
+
+    try {
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('Usuario registrado con éxito');
+        navigate('/'); // Redirige a la página principal después del registro
+      } else {
+        alert(data.error); // Muestra el mensaje de error si ocurre
+      }
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error);
+      alert('Error al conectar con el servidor');
     }
-    if (!form.dni || !form.email || !form.password || !form.lastName || !form.firstName || !form.gender || !form.birthDate) {
-      alert('Por favor, completa todos los campos.');
-      return;
-    }
-    registerUser(form); // Registrar el usuario y establecerlo como actual
-    navigate('/'); // Redirige a la página principal después del registro
   };
 
   return (
@@ -54,9 +63,9 @@ const RegisterPage = () => {
           <input type="text" name="firstName" placeholder="Nombres" value={form.firstName} onChange={handleChange} className="register-input" required />
           <select name="gender" value={form.gender} onChange={handleChange} className="register-input" required>
             <option value="">Selecciona tu sexo</option>
-            <option value="masculino">Masculino</option>
-            <option value="femenino">Femenino</option>
-            <option value="otro">Otro</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
           </select>
           <input type="date" name="birthDate" value={form.birthDate} onChange={handleChange} className="register-input" required />
           <button type="submit" className="register-button">Registrarse</button>

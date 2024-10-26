@@ -1,6 +1,6 @@
 // frontend/src/components/Navbar.js
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import './Navbar.css';
@@ -8,13 +8,7 @@ import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const { currentUser, logoutUser } = useContext(UserContext);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Actualiza el estado de autenticación cuando cambie el usuario actual
-    setIsAuthenticated(!!currentUser);
-  }, [currentUser]);
 
   const handleLogout = () => {
     logoutUser();
@@ -34,7 +28,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-icons">
-        {isAuthenticated ? (
+        {currentUser ? (
           <div className="account-section">
             <Link to="/profile" className="login-link">
               <button className="account-button">Mi Cuenta</button>

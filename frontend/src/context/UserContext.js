@@ -1,50 +1,84 @@
 import React, { createContext, useState } from 'react';
-import UserLinkedList from '../structures/LinkedList';
-
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [userList] = useState(new UserLinkedList());
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null); // Estado para el usuario actual
 
-  // Función para agregar un nuevo usuario
-  const registerUser = (user) => {
-    const { id, email, password, lastName, firstName, gender, birthDate } = user;
-    userList.addUser(id, email, password, lastName, firstName, gender, birthDate);
-    setCurrentUser(user); // Establecer el usuario registrado como actual
-    alert('Usuario registrado exitosamente!');
+  // Función para registrar un nuevo usuario
+  const registerUser = async (user) => {
+    try {
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCurrentUser(data.user); // Establece el usuario actual tras el registro
+        alert('Usuario registrado exitosamente!');
+      } else {
+        alert(data.error); // Muestra el mensaje de error
+      }
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error);
+      alert('Error al conectar con el servidor');
+    }
   };
 
-  // Función para verificar el inicio de sesión
-  const loginUser = (email, password) => {
-    const user = userList.verifyLogin(email, password);
-    if (user) {
-      setCurrentUser(user); // Establece el usuario actual
-      alert(`¡Bienvenido, ${user.firstName} ${user.lastName}!`);
-      return true;
-    } else {
-      alert('Correo o contraseña incorrectos.');
+  // Función para iniciar sesión
+  const loginUser = async (email, password) => {
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCurrentUser(data.user); // Establece el usuario actual tras iniciar sesión
+        alert(`¡Bienvenido, ${data.user.first_name} ${data.user.last_name}!`);
+        return true;
+      } else {
+        alert(data.error); // Muestra el mensaje de error
+        return false;
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      alert('Error al conectar con el servidor');
       return false;
     }
   };
 
   // Función para actualizar los datos del usuario actual
-  const updateUser = (updatedUser) => {
-    let current = userList.head;
-    while (current) {
-      if (current.id === updatedUser.id) {
-        // Actualizar los datos en la lista enlazada
-        current.lastName = updatedUser.lastName;
-        current.firstName = updatedUser.firstName;
-        current.gender = updatedUser.gender;
-        current.birthDate = updatedUser.birthDate;
-        break;
+  const updateUser = async (updatedUser) => {
+    try {
+      const response = await fetch(`http://localhost:5000/users/${updatedUser.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedUser)
+      });
+
+      if (response.ok) {
+        setCurrentUser(updatedUser); // Actualiza el estado del usuario actual
+        alert('Datos actualizados correctamente!');
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error); // Muestra el mensaje de error
       }
-      current = current.next;
+    } catch (error) {
+      console.error('Error al actualizar el usuario:', error);
+      alert('Error al conectar con el servidor');
     }
-    // Actualizar el estado del usuario actual
-    setCurrentUser({ ...updatedUser });
-    alert('Datos actualizados correctamente!');
   };
 
   // Función para cerrar sesión
@@ -53,7 +87,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ userList, registerUser, loginUser, currentUser, logoutUser, updateUser }}>
+    <UserContext.Provider value={{ currentUser, registerUser, loginUser, updateUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );

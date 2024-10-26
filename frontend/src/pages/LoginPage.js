@@ -6,15 +6,18 @@ import { UserContext } from '../context/UserContext';
 import './LoginPage.css';
 
 const LoginPage = () => {
-  const { loginUser } = useContext(UserContext); // Obtener la función de inicio de sesión del contexto
+  const { loginUser } = useContext(UserContext); // Función para establecer el usuario actual en el contexto
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginUser(email, password)) {
-      navigate('/'); // Redirige a la página principal si el login es exitoso
+
+   // Intentar iniciar sesión
+    const success = await loginUser(email, password);
+    if (success) {
+      navigate('/'); // Redirige a la página principal si el inicio de sesión es exitoso
     }
   };
 
@@ -23,8 +26,22 @@ const LoginPage = () => {
       <div className="login-container">
         <h2 className="login-title">Bienvenido de vuelta</h2>
         <form className="login-form" onSubmit={handleSubmit}>
-          <input type="email" placeholder="Correo" value={email} onChange={(e) => setEmail(e.target.value)} className="login-input" required />
-          <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} className="login-input" required />
+          <input
+            type="email"
+            placeholder="Correo"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="login-input"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="login-input"
+            required
+          />
           <button type="submit" className="login-button">Iniciar Sesión</button>
         </form>
         <p className="login-text">
