@@ -24,24 +24,28 @@ const LoginPage = () => {
   return (
     <div className="login-wrapper">
       <div className="login-container">
-        <h2 className="login-title">Bienvenido de vuelta</h2>
+        <h2 className="login-title">¡Bienvenido de vuelta!</h2>
         <form className="login-form" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Correo"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="login-input"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="login-input"
-            required
-          />
+          <div className="login-field">
+            <input
+              type="email"
+              placeholder="Correo"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="login-input"
+              required
+            />
+          </div>
+          <div className="login-field">
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="login-input"
+              required
+            />
+          </div>
           <button type="submit" className="login-button">Iniciar Sesión</button>
         </form>
         <p className="login-text">
@@ -50,8 +54,8 @@ const LoginPage = () => {
         </p>
         <p className="login-text">
           ¿Aún no eres usuario?
+          <span className="register-link" onClick={() => navigate('/register')}> Regístrate aquí</span>
         </p>
-        <button className="register-button" onClick={() => navigate('/register')}>Regístrate aquí</button>
       </div>
     </div>
   );

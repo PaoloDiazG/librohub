@@ -52,6 +52,44 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Ruta para obtener los datos de un usuario específico por ID
+app.get('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  const query = 'SELECT * FROM users WHERE id = ?';
+
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error al obtener los datos del usuario' });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    res.json(results[0]);
+  });
+});
+
+// Ruta para actualizar los datos de un usuario por ID
+app.put('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  const { last_name, first_name, gender, birth_date } = req.body;
+
+  const query = `
+    UPDATE users
+    SET last_name = ?, first_name = ?, gender = ?, birth_date = ?
+    WHERE id = ?
+  `;
+
+  db.query(query, [last_name, first_name, gender, birth_date, userId], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error al actualizar los datos del usuario' });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    res.json({ message: 'Datos actualizados correctamente' });
+  });
+});
+
 // Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);

@@ -1,22 +1,19 @@
-/* frontend/src/pages/ProfilePage.css */
-
 .profile-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background-color: #f5f6fa; /* Fondo blanco */
+  padding: 20px;
 }
 
 .profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-  padding: 30px;
   background-color: #ff3900; /* Fondo anaranjado */
-  border-radius: 12px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  padding: 30px;
+  border-radius: 30px; /* Bordes más redondeados */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra pronunciada */
+  width: 400px;
+  text-align: center;
 }
 
 .profile-title {
@@ -24,42 +21,106 @@
   font-weight: bold;
   color: #ffffff; /* Texto blanco */
   margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif; /* Fuente más redonda */
+  background-color: rgba(255, 255, 255, 0.3); /* Fondo blanco semi-transparente */
+  padding: 10px 20px;
+  border-radius: 20px; /* Bordes redondeados */
+  display: inline-block;
+}
+
+.profile-summary {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semi-transparente */
+  padding: 15px 20px;
+  border-radius: 20px; /* Bordes redondeados */
+  margin-bottom: 20px;
 }
 
 .profile-summary p {
+  font-size: 18px;
   color: #ffffff; /* Texto blanco */
-  font-size: 16px;
-  margin: 5px 0;
+  font-weight: 500;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo negro semi-transparente */
+  border-radius: 20px; /* Bordes redondeados */
+  font-family: 'Poppins', sans-serif; /* Fuente más redonda */
 }
 
 .profile-field {
-  margin: 10px 0;
+  margin: 15px 0;
+}
+
+.profile-field label {
+  font-size: 16px;
+  color: #ffffff; /* Texto blanco */
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
 }
 
 .profile-input {
   width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
+  padding: 12px;
+  margin-top: 5px;
+  border: 2px solid #ffffff; /* Borde blanco */
+  border-radius: 20px; /* Bordes más redondeados */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+  color: #333; /* Texto negro */
   font-size: 16px;
+  font-family: 'Poppins', sans-serif; /* Fuente más redonda */
 }
 
-.edit-button, .save-button, .cancel-button, .back-button {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #000000; /* Botón negro */
-  color: #ffffff; /* Texto blanco */
+.profile-input:focus {
+  outline: none;
+  border-color: #000000; /* Borde negro al enfocarse */
+}
+
+.profile-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-button, .cancel-button, .edit-button, .back-button {
+  padding: 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: 20px; /* Bordes redondeados */
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif; /* Fuente redonda */
+  transition: all 0.3s ease;
+}
+
+.save-button {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #ff3900; /* Texto anaranjado */
+}
+
+.save-button:hover {
+  background-color: #ffe0cc; /* Fondo anaranjado claro */
+  color: #000000; /* Texto negro */
 }
 
 .cancel-button {
-  background-color: #ff3900; /* Naranja */
+  background-color: #f5f6fa; /* Fondo blanco */
+  color: #ff3900; /* Texto anaranjado */
+}
+
+.cancel-button:hover {
+  background-color: #ff6347; /* Fondo anaranjado más fuerte */
+  color: #ffffff; /* Texto blanco */
+}
+
+.edit-button, .back-button {
+  background-color: #000000; /* Fondo negro */
+  color: #ffffff; /* Texto blanco */
+}
+
+.edit-button:hover, .back-button:hover {
+  background-color: #333333; /* Fondo negro más oscuro */
 }
 
 .back-button {
   margin-top: 20px;
-  background-color: #000000;
 }

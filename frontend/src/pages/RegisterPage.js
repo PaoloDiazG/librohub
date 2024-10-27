@@ -41,6 +41,8 @@ const RegisterPage = () => {
       if (response.ok) {
         alert('Usuario registrado con éxito');
         navigate('/'); // Redirige a la página principal después del registro
+        alert('Ahora puedes iniciar sesión'); // Nuevo mensaje adicional
+        navigate('/login'); // Redirige a la página de inicio de sesión
       } else {
         alert(data.error); // Muestra el mensaje de error si ocurre
       }
@@ -50,24 +52,76 @@ const RegisterPage = () => {
     }
   };
 
-  return (
+   return (
     <div className="register-wrapper">
       <div className="register-container">
         <h2 className="register-title">Registro de Usuario</h2>
         <form className="register-form" onSubmit={handleSubmit}>
-          {/* Campos del formulario */}
-          <input type="text" name="dni" placeholder="DNI" value={form.dni} onChange={handleChange} className="register-input" required />
-          <input type="email" name="email" placeholder="Correo" value={form.email} onChange={handleChange} className="register-input" required />
-          <input type="password" name="password" placeholder="Contraseña" value={form.password} onChange={handleChange} className="register-input" required />
-          <input type="text" name="lastName" placeholder="Apellidos" value={form.lastName} onChange={handleChange} className="register-input" required />
-          <input type="text" name="firstName" placeholder="Nombres" value={form.firstName} onChange={handleChange} className="register-input" required />
-          <select name="gender" value={form.gender} onChange={handleChange} className="register-input" required>
+          <input
+            type="text"
+            name="dni"
+            placeholder="DNI"
+            value={form.dni}
+            onChange={handleChange}
+            className="register-input"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Correo"
+            value={form.email}
+            onChange={handleChange}
+            className="register-input"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={form.password}
+            onChange={handleChange}
+            className="register-input"
+            required
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Apellidos"
+            value={form.lastName}
+            onChange={handleChange}
+            className="register-input"
+            required
+          />
+          <input
+            type="text"
+            name="firstName"
+            placeholder="Nombres"
+            value={form.firstName}
+            onChange={handleChange}
+            className="register-input"
+            required
+          />
+          <select
+            name="gender"
+            value={form.gender}
+            onChange={handleChange}
+            className="register-input"
+            required
+          >
             <option value="">Selecciona tu sexo</option>
             <option value="Masculino">Masculino</option>
             <option value="Femenino">Femenino</option>
             <option value="Otro">Otro</option>
           </select>
-          <input type="date" name="birthDate" value={form.birthDate} onChange={handleChange} className="register-input" required />
+          <input
+            type="date"
+            name="birthDate"
+            value={form.birthDate}
+            onChange={handleChange}
+            className="register-input"
+            required
+          />
           <button type="submit" className="register-button">Registrarse</button>
         </form>
         <p className="login-text">

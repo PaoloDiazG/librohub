@@ -10,19 +10,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px;
+  width: 400px;
   padding: 30px;
   background-color: #ff3900; /* Fondo anaranjado */
-  border-radius: 12px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  border-radius: 20px; /* Bordes más redondeados */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
 }
 
 .login-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   color: #ffffff; /* Texto blanco */
   margin-bottom: 20px;
-  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+  font-family: 'Poppins', sans-serif; /* Fuente redonda */
 }
 
 .login-form {
@@ -32,46 +32,59 @@
   width: 100%;
 }
 
+.login-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
 .login-input {
   width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ffffff; /* Borde blanco */
-  border-radius: 4px;
+  padding: 12px;
+  border: 2px solid #ffffff; /* Borde blanco */
+  border-radius: 20px; /* Bordes más redondeados */
   font-size: 16px;
+  font-family: 'Poppins', sans-serif; /* Fuente redonda */
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+  color: #333; /* Texto negro */
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #000000; /* Borde negro al enfocarse */
 }
 
 .login-button {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #000000; /* Botón negro */
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #000000; /* Fondo negro */
   color: #ffffff; /* Texto blanco */
   border: none;
-  border-radius: 4px;
+  border-radius: 20px; /* Bordes más redondeados */
   cursor: pointer;
   font-size: 16px;
+  font-family: 'Poppins', sans-serif; /* Fuente redonda */
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #333333; /* Fondo negro más oscuro */
 }
 
 .login-text {
   font-size: 14px;
-  color: #ffffff;
-  margin: 5px 0;
+  color: #ffffff; /* Texto blanco */
+  margin-top: 15px;
 }
 
-.login-link {
+.login-link, .register-link {
   color: #000000; /* Texto negro */
   cursor: pointer;
   font-weight: bold;
+  margin-left: 5px;
+  transition: color 0.3s ease;
 }
 
-.register-button {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #000000; /* Botón negro */
-  color: #ffffff; /* Texto blanco */
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
+.login-link:hover, .register-link:hover {
+  color: #ffe0cc; /* Texto anaranjado claro */
 }

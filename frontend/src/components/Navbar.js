@@ -15,7 +15,7 @@ const Navbar = () => {
     navigate('/'); // Redirige a la página principal
   };
 
-  return (
+   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <img src={logo} alt="LibroHub Logo" className="logo" />
@@ -33,7 +33,9 @@ const Navbar = () => {
             <Link to="/profile" className="login-link">
               <button className="account-button">Mi Cuenta</button>
             </Link>
-            <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
+            <button className="logout-button" onClick={handleLogout}>
+              Cerrar Sesión
+            </button>
           </div>
         ) : (
           <Link to="/login" className="login-link">
@@ -47,5 +49,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 
