@@ -1,26 +1,28 @@
+/* frontend/src/components/Navbar.css */
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #ff3900; /* Fondo de la navbar */
-  padding: 12px 20px;
-  font-family: 'Poppins', sans-serif; /* Fuente más redonda */
+  padding: 10px 20px;
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif; /* Fuente más redonda */
 }
 
 .navbar-logo {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espaciado entre el logo y el título */
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
 }
 
 .navbar-title {
   font-size: 24px;
-  color: #ffffff; /* Texto blanco */
+  color: #ffffff; /* Texto blanco para resaltar en el fondo naranja */
   font-weight: bold;
 }
 
@@ -29,68 +31,77 @@
   display: flex;
   align-items: center;
   margin: 0 20px;
-  gap: 5px; /* Espaciado entre el input y el botón de búsqueda */
 }
 
 .search-input {
   width: 100%;
   max-width: 500px;
-  padding: 10px;
-  border: 2px solid #000000; /* Borde negro */
+  padding: 8px;
+  border: 1px solid #000000;
   border-right: none;
-  border-radius: 20px 0 0 20px; /* Bordes redondeados */
+  border-radius: 4px 0 0 4px;
   background-color: #ffffff; /* Fondo blanco */
   color: #000000;
-  font-family: 'Poppins', sans-serif;
 }
 
+/* Estilo del botón de búsqueda */
 .search-button {
-  padding: 10px 16px;
-  background-color: #000000; /* Botón negro */
+  padding: 8px 16px;
+  background-color: #000000; /* Fondo negro */
   color: #ffffff; /* Texto blanco */
   border: none;
-  border-radius: 0 20px 20px 0; /* Bordes redondeados */
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
+/* Efecto de hover para el botón de búsqueda */
 .search-button:hover {
   background-color: #333333; /* Fondo negro más oscuro */
+  transform: scale(1.05); /* Efecto de agrandamiento */
 }
 
 .navbar-icons {
   display: flex;
   align-items: center;
-  gap: 15px; /* Espaciado entre los botones */
 }
 
-.login-button, .account-button, .logout-button, .cart-button {
-  padding: 10px 16px;
-  background-color: #000000; /* Fondo negro */
-  color: #ffffff; /* Texto blanco */
+.login-button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff;
   border: none;
-  border-radius: 20px; /* Bordes redondeados */
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
 }
 
-.login-button:hover, .account-button:hover, .cart-button:hover {
-  background-color: #333333; /* Fondo negro más oscuro */
-}
-
-.logout-button {
-  background-color: #ff3900; /* Fondo naranja */
-  color: #ffffff; /* Texto blanco */
-}
-
-.logout-button:hover {
-  background-color: #ff6347; /* Naranja más oscuro */
+.cart-button {
+  padding: 8px 16px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .account-section {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espaciado entre "Mi Cuenta" y "Cerrar Sesión" */
+}
+
+.account-button, .logout-button {
+  padding: 8px 16px;
+  background-color: #000000; /* Botón negro */
+  color: #ffffff; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.logout-button {
+  background-color: #ff3900; /* Naranja para diferenciar */
 }
 

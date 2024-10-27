@@ -6,9 +6,13 @@ const db = require('./db'); // Asegúrate de tener este archivo configurado
 
 const app = express();
 const PORT = 5000;
+
+
 // Middleware
 app.use(cors({ origin: '*' })); // Permitir todas las solicitudes de origen cruzado (solo para pruebas)
 app.use(bodyParser.json());
+app.use(express.json());
+
 
 // Ruta para registrar un nuevo usuario
 app.post('/register', (req, res) => {
@@ -87,6 +91,35 @@ app.put('/users/:id', (req, res) => {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
     res.json({ message: 'Datos actualizados correctamente' });
+  });
+});
+
+// Ruta para obtener todos los libros
+app.get('/books', (req, res) => {
+  const query = 'SELECT * FROM books';
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error al obtener los libros:', err);
+      return res.status(500).json({ error: 'Error al obtener los libros' });
+    }
+    res.json(results);
+  });
+});
+
+// Ruta para obtener libros con búsqueda
+app.get('/books', (req, res) => {
+  const search = req.query.search || '';
+  const query = `
+    SELECT * FROM books
+    WHERE LOWER(nombre) LIKE LOWER(?)`;
+
+  db.query(query, [`%${search}%`], (err, results) => {
+    if (err) {
+      console.error('Error al obtener los libros:', err);
+      return res.status(500).json({ error: 'Error al obtener los libros' });
+    }
+    res.json(results);
   });
 });
 

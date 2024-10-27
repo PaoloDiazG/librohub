@@ -1,26 +1,30 @@
-// frontend/src/App.js
-
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
-import './App.css';
+import SearchPage from "./pages/SearchPage";
+import CartPage from './pages/CartPage'; // Importar la CartPage
+import { CartProvider } from './context/CartContext'; // Importar el CartProvider
 
-function App() {
+const App = () => {
   return (
+  <CartProvider>
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<div>Bienvenido a Librohub</div>} />
+        <Route path="/" element={<HomePage />} />  {/* Ruta predeterminada */}
         <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/register" element={<RegisterPage/>} />
-        <Route path="/recover-password" element={<div>Recuperar Contraseña</div>} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/search" element={<SearchPage />} />  {/* Agregar la ruta de búsqueda */}
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </Router>
+  </CartProvider>
   );
-}
+};
 
 export default App;

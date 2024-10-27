@@ -1,0 +1,107 @@
+/* Fondo general de la página principal */
+.homepage {
+  padding: 40px 20px;
+  background-color: #ff3900; /* Fondo anaranjado */
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* Título de la página */
+.homepage-title {
+  font-size: 36px;
+  color: #ffffff; /* Texto blanco para contraste */
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: 'Poppins', sans-serif; /* Fuente redondeada */
+}
+
+/* Descripción de la página */
+.homepage-description {
+  font-size: 18px;
+  color: #ffffff; /* Texto blanco */
+  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Fila de categorías */
+.category-row {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Título de la categoría */
+.category-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff3900; /* Texto anaranjado */
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Contenedor de libros de cada categoría */
+.category-books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+/* Tarjetas de libros */
+.book-card {
+  width: 200px;
+  padding: 15px;
+  background-color: #ffffff; /* Fondo blanco */
+  border: 2px solid #ff3900; /* Borde anaranjado */
+  border-radius: 20px; /* Bordes más redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.book-card:hover {
+  transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+.book-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000; /* Texto negro */
+  margin-bottom: 8px;
+}
+
+.book-author {
+  font-size: 14px;
+  color: #666666; /* Texto gris */
+  margin-bottom: 5px;
+}
+
+.book-price {
+  font-size: 16px;
+  color: #ff3900; /* Texto anaranjado */
+  font-weight: bold;
+}
+
+/* Botones en tarjetas de libros (opcional) */
+.book-card button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #000000; /* Fondo negro */
+  color: #ffffff; /* Texto blanco */
+  border: none;
+  border-radius: 20px; /* Bordes redondeados */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.book-card button:hover {
+  background-color: #333333; /* Fondo negro más oscuro */
+}

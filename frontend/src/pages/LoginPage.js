@@ -49,10 +49,6 @@ const LoginPage = () => {
           <button type="submit" className="login-button">Iniciar Sesión</button>
         </form>
         <p className="login-text">
-          ¿Olvidaste tu contraseña?
-          <span className="login-link" onClick={() => navigate('/recover-password')}> Haz clic aquí</span>
-        </p>
-        <p className="login-text">
           ¿Aún no eres usuario?
           <span className="register-link" onClick={() => navigate('/register')}> Regístrate aquí</span>
         </p>
