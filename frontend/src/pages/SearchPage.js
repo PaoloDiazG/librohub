@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import './SearchPage.css';
 import BookCard from './BookCard';
 
 const SearchPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState(new URLSearchParams(location.search).get('q') || '');
+  const [searchQuery] = useState(new URLSearchParams(location.search).get('q') || '');
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
 

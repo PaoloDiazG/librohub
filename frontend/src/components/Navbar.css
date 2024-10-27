@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ff3900; /* Fondo de la navbar */
+  background-color: #060f15; /* Fondo de la navbar */
   padding: 10px 20px;
   font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif; /* Fuente más redonda */
 }
@@ -69,8 +69,8 @@
 .login-button {
   margin-right: 10px;
   padding: 8px 16px;
-  background-color: #000000; /* Botón negro */
-  color: #ffffff;
+  background-color: #ff3900; /* Botón negro */
+  color: #81fff9;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -78,7 +78,7 @@
 
 .cart-button {
   padding: 8px 16px;
-  background-color: #000000; /* Botón negro */
+  background-color: #ff3900; /* Botón negro */
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -92,7 +92,7 @@
 
 .account-button, .logout-button {
   padding: 8px 16px;
-  background-color: #000000; /* Botón negro */
+  background-color: #ff3900; /* Botón negro */
   color: #ffffff; /* Texto blanco */
   border: none;
   border-radius: 4px;
@@ -102,6 +102,7 @@
 }
 
 .logout-button {
-  background-color: #ff3900; /* Naranja para diferenciar */
+  background-color: #ffffff; /* Naranja para diferenciar */
+  color: #060f15; /* Texto blanco */
 }
 

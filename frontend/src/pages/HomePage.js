@@ -51,9 +51,9 @@ const Homepage = () => {
 
   return (
     <div className="homepage">
-      <h1 className="homepage-title">Bienvenido a LibroHub</h1>
+      <h1 className="homepage-title">BIENVENIDO A LIBROHUB</h1>
       <p className="homepage-description">
-        Explora nuestra colección de libros agrupados por categorías. ¡Disfruta de la lectura!
+        ¿Qué quieres leer hoy?
       </p>
 
       {/* Renderizar las filas de categorías */}
