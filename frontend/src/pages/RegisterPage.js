@@ -1,5 +1,3 @@
-// frontend/src/pages/RegisterPage.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RegisterPage.css';
@@ -13,7 +11,7 @@ const RegisterPage = () => {
     lastName: '',
     firstName: '',
     gender: '',
-    birthDate: ''
+    /*birthDate: ''*/
   });
 
   const handleChange = (e) => {

@@ -16,12 +16,10 @@ const Navbar = () => {
     logoutUser();
     navigate('/'); // Redirige a la página principal
   };
-
   // Manejar el cambio en la barra de búsqueda
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
   // Enviar búsqueda al presionar el botón de búsqueda
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +28,6 @@ const Navbar = () => {
       setSearchQuery(''); // Limpiar la barra de búsqueda
     }
   };
-
    // Manejar el clic en el botón del carrito
   const handleCartClick = () => {
     if (currentUser) {
@@ -47,41 +44,47 @@ const Navbar = () => {
     <nav className="navbar">
       <Link to="/" className="navbar-logo">
         <img src={logo} alt="LibroHub Logo" className="logo" />
+        <h1 className="navbar-title">LibroHub</h1>
       </Link>
 
-      <form className="navbar-search" onSubmit={handleSearchSubmit}>
-        <input
-          type="text"
-          placeholder="Buscar libros..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="search-input"
-        />
+      <form className="navbar-search" onSubmit={(e) => e.preventDefault()}>
+        <input type="text" placeholder="Buscar libros..." className="search-input" />
         <button type="submit" className="search-button">🔍</button>
       </form>
 
       <div className="navbar-icons">
         {currentUser ? (
-          <div className="account-section">
-            <Link to="/profile" className="login-link">
-              <button className="account-button">Mi Cuenta</button>
-            </Link>
-            <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
-          </div>
+          <>
+            {/* Mostrar opciones de admin si el usuario es admin */}
+            {currentUser.isAdmin && (
+              <div className="admin-section">
+                <Link to="/admin/add" className="admin-link">
+                  <button className="admin-button">Agregar Libro</button>
+                </Link>
+                <Link to="/admin/edit" className="admin-link">
+                  <button className="admin-button">Modificar Libro</button>
+                </Link>
+                <Link to="/admin/delete" className="admin-link">
+                  <button className="admin-button">Eliminar Libro</button>
+                </Link>
+              </div>
+            )}
+
+            <button className="logout-button" onClick={handleLogout}>
+              Cerrar Sesión
+            </button>
+            <button className="cart-button" onClick={handleCartClick}>
+              🛒 ({cart.length})
+            </button>
+          </>
         ) : (
           <Link to="/login" className="login-link">
             <button className="login-button">Iniciar Sesión</button>
           </Link>
         )}
-       {/* Botón para redirigir al carrito */}
-         {/* Botón para redirigir al carrito */}
-        <button className="cart-button" onClick={handleCartClick}>
-          🛒 ({cart.length})
-        </button>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
-

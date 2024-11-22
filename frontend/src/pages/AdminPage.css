@@ -1,0 +1,38 @@
+.admin-page {
+  padding: 40px;
+  text-align: center;
+}
+
+.admin-page h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.admin-page input {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Estilos de los botones */
+.admin-button {
+  padding: 12px 20px;
+  background-color: #ff3900; /* Fondo negro */
+  color: #ffffff; /* Texto blanco */
+  border: none;
+  border-radius: 20px; /* Bordes redondeados */
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Efecto hover */
+.admin-button:hover {
+  background-color: #333333; /* Fondo más oscuro */
+  transform: scale(1.05); /* Efecto de agrandamiento */
+}

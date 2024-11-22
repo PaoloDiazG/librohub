@@ -37,6 +37,10 @@ const Homepage = () => {
     'Suspenso',
     'Terror',
     'Policiales',
+      'Deportes',
+      'Tecnologias',
+      'Adultos +18',
+      'Mascotas'
   ];
 
   // Mostrar el estado de carga

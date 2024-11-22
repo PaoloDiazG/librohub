@@ -101,6 +101,30 @@
   margin-right: 10px;
 }
 
+
+/* Estilos de los botones en la navbar */
+.login-button, .cart-button, .logout-button, .admin-button {
+  padding: 10px 16px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-button:hover, .cart-button:hover, .logout-button:hover, .admin-button:hover {
+  background-color: #333333;
+  transform: scale(1.05);
+}
+
+.admin-section {
+  display: flex;
+  gap: 10px;
+}
+
 .logout-button {
   background-color: #ffffff; /* Naranja para diferenciar */
   color: #060f15; /* Texto blanco */

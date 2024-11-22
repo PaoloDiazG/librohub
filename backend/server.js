@@ -2,14 +2,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('./db'); // Asegúrate de tener este archivo configurado
+const db = require('./db');
 
 const app = express();
 const PORT = 5000;
 
 
 // Middleware
-app.use(cors({ origin: '*' })); // Permitir todas las solicitudes de origen cruzado (solo para pruebas)
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -94,6 +94,31 @@ app.put('/users/:id', (req, res) => {
   });
 });
 
+//Ruta para agregar libros
+app.post('/books', (req, res) => {
+  const { nombre, autor, categoria, anio, precio } = req.body;
+
+  // Verifica que todos los datos requeridos estén presentes
+  if (!nombre || !autor || !categoria || !anio || !precio) {
+    return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
+  }
+
+  const query = 'INSERT INTO books (nombre, autor, categoria, anio, precio) VALUES (?, ?, ?, ?, ?)';
+
+  db.query(query, [nombre, autor, categoria, anio, precio], (err, result) => {
+    if (err) {
+      console.error('Error al agregar el libro:', err);
+      return res.status(500).json({ error: 'Error al agregar el libro en la base de datos.' });
+    }
+    // Solo enviar éxito si se insertó una fila
+    if (result.affectedRows > 0) {
+      res.json({ message: 'Libro agregado correctamente' });
+    } else {
+      res.status(500).json({ error: 'No se pudo agregar el libro.' });
+    }
+  });
+});
+
 // Ruta para obtener todos los libros
 app.get('/books', (req, res) => {
   const query = 'SELECT * FROM books';
@@ -122,6 +147,81 @@ app.get('/books', (req, res) => {
     res.json(results);
   });
 });
+
+//Ruta para crear una nueva transacción
+app.post('/transactions', (req, res) => {
+  const { userId, dni, nombre, librosComprados, precioTotal } = req.body;
+
+  const query = `
+    INSERT INTO transacciones (user_id, dni, nombre, libros_comprados, precio_total)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    query,
+    [userId, dni, JSON.stringify(nombre), JSON.stringify(librosComprados), precioTotal],
+    (err, result) => {
+      if (err) {
+        console.error('Error al registrar la transacción:', err);
+        return res.status(500).json({ error: 'Error al registrar la transacción' });
+      }
+      res.json({ message: 'Transacción registrada exitosamente' });
+    }
+  );
+});
+
+  // Agregar un libro
+app.post('/books', (req, res) => {
+    const { nombre, autor, categoria, anio, precio } = req.body;
+    const query = 'INSERT INTO books (nombre, autor, categoria, anio, precio) VALUES (?, ?, ?, ?, ?)';
+    db.query(query, [nombre, autor, categoria, anio, precio], (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: 'Error al agregar el libro' });
+      }
+      res.json({ message: 'Libro agregado exitosamente' });
+    });
+  });
+
+  //Libro por ID:
+app.get('/books/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM books WHERE id = ?';
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error al obtener el libro' });
+    }
+    if (result.length === 0) {
+      return res.status(404).json({ error: 'Libro no encontrado' });
+    }
+    res.json(result[0]);
+  });
+});
+
+// Actualizar libro
+app.put('/books/:id', (req, res) => {
+  const { id } = req.params;
+  const { nombre, autor, categoria, anio: anio, precio } = req.body;
+  const query = 'UPDATE books SET nombre = ?, autor = ?, categoria = ?, anio = ?, precio = ? WHERE id = ?';
+  db.query(query, [nombre, autor, categoria, anio, precio, id], (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error al actualizar el libro' });
+    }
+    res.json({ message: 'Libro actualizado exitosamente' });
+  });
+});
+
+// Eliminar libro
+app.delete('/books/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'DELETE FROM books WHERE id = ?';
+  db.query(query, [id], (err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Error al eliminar el libro' });
+    }
+    res.json({ message: 'Libro eliminado exitosamente' });
+  });
+});
+
 
 // Iniciar el servidor
 app.listen(PORT, () => {

@@ -1,27 +1,31 @@
-// frontend/src/pages/LoginPage.js
-
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import './LoginPage.css';
 
 const LoginPage = () => {
-  const { loginUser } = useContext(UserContext); // Función para establecer el usuario actual en el contexto
+  const { loginUser, setCurrentUser } = useContext(UserContext); // Función para establecer el usuario actual en el contexto
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-   // Intentar iniciar sesión
-    const success = await loginUser(email, password);
-    if (success) {
+    // Verificar credenciales del administrador
+    if (email === 'p@p.com' && password === '123') {
+      const adminUser = { email, isAdmin: true }; // Crear un objeto de usuario administrador
+      setCurrentUser(adminUser); // Establecer el usuario administrador como usuario actual
+      alert('¡Bienvenido, Admin!');
+      navigate('/'); // Redirige a la página principal después del inicio de sesión
+    } else if (loginUser(email, password)) {
       navigate('/'); // Redirige a la página principal si el inicio de sesión es exitoso
+    } else {
+      alert('Correo o contraseña incorrectos.');
     }
   };
 
-  return (
+return (
     <div className="login-wrapper">
       <div className="login-container">
         <h2 className="login-title">¡Bienvenido de vuelta!</h2>

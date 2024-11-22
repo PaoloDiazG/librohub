@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -32,6 +33,21 @@ export const UserProvider = ({ children }) => {
   // Función para iniciar sesión
   const loginUser = async (email, password) => {
     try {
+      //Verificar admin
+      if (email === 'p@p.com' && password === '123') {
+        const adminUser = {
+          email: 'p@p.com',
+          first_name: 'Admin',
+          last_name: 'User',
+          isAdmin: true // Indica que es un usuario administrador
+        };
+        setCurrentUser(adminUser);
+        alert(`¡Bienvenido, ${adminUser.first_name} ${adminUser.last_name}!`);
+        return true;
+      }
+
+      //Usuarios normales
+
       const response = await fetch('http://localhost:5000/login', {
         method: 'POST',
         headers: {
@@ -87,7 +103,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ currentUser, registerUser, loginUser, updateUser, logoutUser }}>
+    <UserContext.Provider value={{ currentUser, setCurrentUser, registerUser, loginUser, updateUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );
